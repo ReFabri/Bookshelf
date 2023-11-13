@@ -1,6 +1,6 @@
 import { connect } from "mongoose";
 
-export async function connectToDatabase() {
+export default async function connectToDatabase() {
   try {
     await connect(process.env.MONGODB_URI);
     console.log("Successfully Connected to Database");
