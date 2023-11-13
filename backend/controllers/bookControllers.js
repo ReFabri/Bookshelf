@@ -19,8 +19,9 @@ async function getAllBooks(req, res) {
 
 async function createBook(req, res) {
   try {
+    console.log(req.body);
     const { title, author, publishYear } = req.body;
-    const existingBook = await Book.find({ title });
+    const existingBook = await Book.findOne({ title });
     if (!existingBook) {
       const book = new Book({ title, author, publishYear });
       await book.save();
@@ -31,7 +32,8 @@ async function createBook(req, res) {
       return res.status(409).json({ message: "Book title already exists" });
     }
   } catch (error) {
-    return res.status(200).json({ message: "Book creation failed", error });
+    console.log(error);
+    return res.status(500).json({ message: "Book creation failed", error });
   }
 }
 async function updateBook(req, res) {
