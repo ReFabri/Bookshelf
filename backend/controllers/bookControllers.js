@@ -1,3 +1,4 @@
+import { MongooseError } from "mongoose";
 import { Book } from "../models/bookModel.js";
 
 async function getBook(req, res) {
@@ -19,7 +20,6 @@ async function getAllBooks(req, res) {
 
 async function createBook(req, res) {
   try {
-    console.log(req.body);
     const { title, author, publishYear } = req.body;
     const existingBook = await Book.findOne({ title });
     if (!existingBook) {
@@ -40,7 +40,18 @@ async function updateBook(req, res) {
   res.send("updateBook");
 }
 async function deleteBook(req, res) {
-  res.send("deleteBook");
+  try {
+    const { id } = req.params;
+    const foundBook = await Book.findById(id);
+    if (foundBook) {
+      await Book.findByIdAndDelete(id);
+      return res.status(200).json({ message: "Book removed from database" });
+    } else {
+      throw Error();
+    }
+  } catch (error) {
+    return res.status(500).json({ message: "Book deletion error", error });
+  }
 }
 
 export { getBook, getAllBooks, createBook, updateBook, deleteBook };
