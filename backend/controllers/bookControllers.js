@@ -37,8 +37,26 @@ async function createBook(req, res) {
   }
 }
 async function updateBook(req, res) {
-  res.send("updateBook");
+  try {
+    const { id } = req.params;
+    const { title, author, publishYear } = req.body;
+    const bookToEdit = await Book.findById(id);
+    if (bookToEdit) {
+      bookToEdit.title = title?.trim() ? title : bookToEdit.title;
+      bookToEdit.author = author?.trim() ? author : bookToEdit.author;
+      bookToEdit.publishYear = publishYear
+        ? publishYear
+        : bookToEdit.publishYear;
+      await bookToEdit.save();
+      res.status(200).json({ message: "Book successfully updated" });
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Book update failed", error });
+  }
 }
+
 async function deleteBook(req, res) {
   try {
     const { id } = req.params;
@@ -47,7 +65,7 @@ async function deleteBook(req, res) {
       await Book.findByIdAndDelete(id);
       return res.status(200).json({ message: "Book removed from database" });
     } else {
-      throw Error();
+      throw new Error();
     }
   } catch (error) {
     return res.status(500).json({ message: "Book deletion error", error });
