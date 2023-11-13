@@ -1,16 +1,29 @@
-function getBook(req, res) {
+import Book from "../models/bookModel.js";
+
+async function getBook(req, res) {
   res.send("getBook");
 }
-function getAllBooks(req, res) {
-  res.send("getAllBooks");
+
+async function getAllBooks(req, res) {
+  try {
+    const books = await Book.find({});
+    return res
+      .status(200)
+      .json({ message: "Successfully received all books", books });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "GET all books request failed", error });
+  }
 }
-function createBook(req, res) {
+
+async function createBook(req, res) {
   res.send("createBook");
 }
-function updateBook(req, res) {
+async function updateBook(req, res) {
   res.send("updateBook");
 }
-function deleteBook(req, res) {
+async function deleteBook(req, res) {
   res.send("deleteBook");
 }
 
