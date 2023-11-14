@@ -1,4 +1,3 @@
-import { MongooseError } from "mongoose";
 import { Book } from "../models/bookModel.js";
 
 async function getBook(req, res) {
