@@ -2,7 +2,20 @@ import { MongooseError } from "mongoose";
 import { Book } from "../models/bookModel.js";
 
 async function getBook(req, res) {
-  res.send("getBook");
+  try {
+    const { id } = req.params;
+    const book = await Book.findById(id);
+    if (book) {
+      return res
+        .status(200)
+        .json({ message: "Successfully received book", book });
+    } else {
+      return res.status(400).json({ message: "Incorrect Book id" });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "GET book request failed" });
+  }
 }
 
 async function getAllBooks(req, res) {
@@ -12,6 +25,7 @@ async function getAllBooks(req, res) {
       .status(200)
       .json({ message: "Successfully received all books", books });
   } catch (error) {
+    console.log(error);
     return res
       .status(500)
       .json({ message: "GET all books request failed", error });
@@ -53,6 +67,7 @@ async function updateBook(req, res) {
       throw new Error();
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Book update failed", error });
   }
 }
@@ -68,6 +83,7 @@ async function deleteBook(req, res) {
       throw new Error();
     }
   } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Book deletion error", error });
   }
 }
