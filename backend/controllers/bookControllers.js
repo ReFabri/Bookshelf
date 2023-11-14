@@ -64,7 +64,7 @@ async function updateBook(req, res) {
       await bookToEdit.save();
       res.status(200).json({ message: "Book successfully updated" });
     } else {
-      throw new Error();
+      res.status(400).json({ message: "Incorrect Book id" });
     }
   } catch (error) {
     console.log(error);
@@ -80,7 +80,7 @@ async function deleteBook(req, res) {
       await Book.findByIdAndDelete(id);
       return res.status(200).json({ message: "Book removed from database" });
     } else {
-      throw new Error();
+      res.status(400).json({ message: "Incorrect Book id" });
     }
   } catch (error) {
     console.log(error);
