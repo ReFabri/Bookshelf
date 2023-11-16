@@ -6,7 +6,7 @@ const Header = () => {
     <header className="headerMain">
       <div>
         <Link to="/" className="headerTitle">
-          BookShelf
+          📙 BookShelf
         </Link>
       </div>
       <div className="headerSearch">
@@ -14,8 +14,12 @@ const Header = () => {
         <button className="headerBtn headerBtn-search">🔍</button>
       </div>
       <nav className="navMain">
-        <button className="headerBtn">Add Book</button>
-        <button className="headerBtn">All Books</button>
+        <Link to="/addbook">
+          <button className="headerBtn">Add Book</button>
+        </Link>
+        <Link to="/allbooks">
+          <button className="headerBtn">All Books</button>
+        </Link>
       </nav>
     </header>
   );

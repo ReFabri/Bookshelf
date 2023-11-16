@@ -1,0 +1,38 @@
+.homeSection {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  height: 90vh;
+  margin: 0 5rem;
+}
+
+.homeImage {
+  display: flex;
+  justify-content: end;
+}
+
+.homeImage img {
+  object-fit: contain;
+  max-width: 90%;
+  height: auto;
+}
+
+.homeText-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.homeText-container h1 {
+  line-height: 1.2;
+  font-size: 4rem;
+  font-weight: 800;
+  width: 50%;
+  color: #551a8b;
+}
+
+.homeText-container p {
+  width: 50%;
+  font-size: 1.4rem;
+}

@@ -13,7 +13,7 @@
 
 .headerBtn {
   border: none;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-weight: 800;
@@ -35,4 +35,8 @@
   padding: 0 0.5rem;
   background-color: white;
   border: 3px solid #551a8b;
+}
+
+.headerBtn:hover {
+  opacity: 0.8;
 }
