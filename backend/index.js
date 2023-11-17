@@ -3,15 +3,13 @@ const app = express();
 import "dotenv/config";
 import bookRoutes from "./routes/bookRoutes.js";
 import connectToDatabase from "./config/dbConnection.js";
+import cors from "cors";
 
 const PORT = process.env.PORT || 5000;
 
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(express.json());
 app.use("/bookstore", bookRoutes);
-
-app.get("/", (req, res) => {
-  res.send(`GET "/" AT PORT ${PORT}`);
-});
 
 connectToDatabase()
   .then(() => {
