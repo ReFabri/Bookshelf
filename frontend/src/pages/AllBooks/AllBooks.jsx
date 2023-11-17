@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import "./AllBooks.css";
 
 const editHandler = () => {};
@@ -5,26 +7,20 @@ const editHandler = () => {};
 const deleteHandler = () => {};
 
 const AllBooks = () => {
-  const allBooks = [
-    {
-      id: 1,
-      title: "Super Amazing Book",
-      author: "Mister Amazing Author",
-      publishYear: 1234,
-    },
-    {
-      id: 2,
-      title: "Sci-Fi Nerdfest",
-      author: "Annoying Arrogant Nerd",
-      publishYear: 1234,
-    },
-    {
-      id: 3,
-      title: "Fantasy and Dragons",
-      author: "Adult Man-Child",
-      publishYear: 1234,
-    },
-  ];
+  const [allBooks, setAllBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await fetch("http://localhost:5000/bookstore/");
+        const jsonData = await data.json();
+        setAllBooks(jsonData.books);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [setAllBooks]);
 
   return (
     <section className="allBooks-section">
@@ -37,7 +33,7 @@ const AllBooks = () => {
           </div>
         ) : (
           allBooks.map((book) => (
-            <div key={book.id} className="allBooks-index">
+            <div key={book._id} className="allBooks-index">
               <div>
                 <span>{book.title}</span>
               </div>
