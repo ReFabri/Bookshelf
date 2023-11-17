@@ -29,6 +29,7 @@
 .headerSearch input {
   border-radius: 0.4rem;
   border: 1px solid gray;
+  padding: 0 1rem;
 }
 
 .headerBtn-search {
