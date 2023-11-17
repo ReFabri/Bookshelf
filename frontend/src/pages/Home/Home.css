@@ -1,9 +1,8 @@
 .homeSection {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 2rem;
-  height: 90vh;
-  margin: 0 5rem;
+  height: calc(100dvh - 5rem);
 }
 
 .homeImage {
