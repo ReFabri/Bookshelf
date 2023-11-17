@@ -1,5 +1,9 @@
 import "./AllBooks.css";
 
+const editHandler = () => {};
+
+const deleteHandler = () => {};
+
 const AllBooks = () => {
   const allBooks = [
     {
@@ -42,6 +46,10 @@ const AllBooks = () => {
               </div>
               <div className="allBooks-year">
                 Year: <span>{book.publishYear}</span>
+              </div>
+              <div className="allBooks-btns">
+                <button onClick={editHandler}>✏️</button>
+                <button onClick={deleteHandler}>🗑️</button>
               </div>
             </div>
           ))
