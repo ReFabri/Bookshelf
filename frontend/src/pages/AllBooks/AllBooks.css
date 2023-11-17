@@ -1,0 +1,37 @@
+.allBooks-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.allBooks-container h1 {
+  font-size: 2rem;
+  color: #551a8b;
+  margin: 2rem 0;
+}
+
+.allBooks-container h2 {
+  text-align: center;
+  margin: 3rem 0 1rem 0;
+}
+
+.allBooks-index {
+  min-width: 80dvw;
+  display: grid;
+  grid-template-columns: 1fr 0.6fr 8rem;
+  gap: 0.2rem;
+}
+
+.allBooks-index div {
+  font-weight: 800;
+  border: 2px solid gray;
+  border-radius: 0.4rem;
+  padding: 1rem 2rem;
+  margin: 0.5rem 0;
+}
+
+.allBooks-container .allBooks-year {
+  text-align: center;
+  padding: 1rem 0;
+  margin: 0.5 0;
+}
