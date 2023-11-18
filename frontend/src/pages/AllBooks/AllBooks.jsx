@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./AllBooks.css";
 
-const editHandler = () => {};
-
-const deleteHandler = () => {};
-
 const AllBooks = () => {
+  const navigate = useNavigate();
   const [allBooks, setAllBooks] = useState([]);
 
   useEffect(() => {
@@ -21,6 +19,13 @@ const AllBooks = () => {
     };
     fetchData();
   }, [setAllBooks]);
+
+  const editHandler = (e) => {
+    e.preventDefault();
+    navigate(`/editbook/${e.target.value}`);
+  };
+
+  const deleteHandler = () => {};
 
   return (
     <section className="allBooks-section">
@@ -44,7 +49,9 @@ const AllBooks = () => {
                 Year: <span>{book.publishYear}</span>
               </div>
               <div className="allBooks-btns">
-                <button onClick={editHandler}>✏️</button>
+                <button onClick={editHandler} value={book._id}>
+                  ✏️
+                </button>
                 <button onClick={deleteHandler}>🗑️</button>
               </div>
             </div>
