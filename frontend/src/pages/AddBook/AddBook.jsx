@@ -8,7 +8,13 @@ const AddBook = () => {
 
   const submitHandler = async () => {
     try {
-      await fetch("http://localhost:5000/bookstore/", { method: "POST" });
+      await fetch("http://localhost:5000/bookstore/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, author, publishYear }),
+      });
     } catch (error) {
       console.log(error);
     }
