@@ -1,7 +1,9 @@
 import "./AddBook.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddBook = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
@@ -16,6 +18,7 @@ const AddBook = () => {
           },
           body: JSON.stringify({ title, author, publishYear }),
         });
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
