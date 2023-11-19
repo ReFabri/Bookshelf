@@ -7,16 +7,17 @@ const AllBooks = () => {
   const navigate = useNavigate();
   const [allBooks, setAllBooks] = useState([]);
 
+  const fetchData = async () => {
+    try {
+      const data = await fetch("http://localhost:5000/bookstore/");
+      const jsonData = await data.json();
+      setAllBooks(jsonData.books);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetch("http://localhost:5000/bookstore/");
-        const jsonData = await data.json();
-        setAllBooks(jsonData.books);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     fetchData();
   }, [setAllBooks]);
 
@@ -30,6 +31,7 @@ const AllBooks = () => {
     await fetch(`http://localhost:5000/bookstore/${e.target.value}`, {
       method: "DELETE",
     });
+    fetchData();
   };
 
   return (
