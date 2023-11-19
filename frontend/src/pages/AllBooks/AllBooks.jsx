@@ -25,7 +25,12 @@ const AllBooks = () => {
     navigate(`/editbook/${e.target.value}`);
   };
 
-  const deleteHandler = () => {};
+  const deleteHandler = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:5000/bookstore/${e.target.value}`, {
+      method: "DELETE",
+    });
+  };
 
   return (
     <section className="allBooks-section">
@@ -52,7 +57,9 @@ const AllBooks = () => {
                 <button onClick={editHandler} value={book._id}>
                   ✏️
                 </button>
-                <button onClick={deleteHandler}>🗑️</button>
+                <button onClick={deleteHandler} value={book._id}>
+                  🗑️
+                </button>
               </div>
             </div>
           ))
