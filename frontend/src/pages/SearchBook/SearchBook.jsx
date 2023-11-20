@@ -1,25 +1,30 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./SearchBooks.css";
 
 const SearchBook = () => {
   const navigate = useNavigate();
+  const { search } = useParams();
   const [allBooks, setAllBooks] = useState([]);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
+      const cleanSearchStr = search.trim().toLowerCase();
       const data = await fetch("http://localhost:5000/bookstore/");
       const jsonData = await data.json();
-      setAllBooks(jsonData.books);
+      const foundBooks = jsonData.books.filter((book) => {
+        book.title.toLowerCase().includes(cleanSearchStr);
+      });
+      setAllBooks(foundBooks);
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [search]);
 
   useEffect(() => {
     fetchData();
-  }, [setAllBooks]);
+  }, [fetchData, setAllBooks]);
 
   const editHandler = (e) => {
     e.preventDefault();
