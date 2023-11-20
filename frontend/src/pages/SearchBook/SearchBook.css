@@ -1,0 +1,75 @@
+.allBooks-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.allBooks-container h1 {
+  font-size: 2rem;
+  color: #551a8b;
+  margin: 2rem 0;
+}
+
+.allBooks-container h2 {
+  text-align: center;
+  margin: 3rem 0 1rem 0;
+}
+
+.allBooks-index {
+  min-width: 80dvw;
+  display: grid;
+  grid-template-columns: 1fr 0.6fr 8rem 8rem;
+  gap: 0.2rem;
+}
+
+.allBooks-index div {
+  font-weight: 800;
+  border: 2px solid gray;
+  border-radius: 0.6rem;
+  padding: 1rem 2rem;
+  margin: 0.5rem 0;
+}
+
+.allBooks-container .allBooks-year {
+  text-align: center;
+  padding: 1rem 0;
+  margin: 0.5 0;
+}
+
+.allBooks-container .allBooks-btns {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0.5rem 0;
+  margin: 0 0 0 0.5rem;
+  display: flex;
+  border: none;
+}
+
+.allBooks-btns button {
+  width: 50%;
+  transition: all 200ms ease-in-out;
+}
+
+.allBooks-btns button:first-child {
+  border: 5px solid rgb(123, 123, 245);
+  background-color: rgba(123, 123, 245, 0.3);
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.allBooks-btns button:last-child {
+  border: 5px solid rgb(224, 112, 112);
+  background-color: rgba(224, 112, 112, 0.3);
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.allBooks-btns button:first-child:hover {
+  font-size: 1.1rem;
+  border: 8px solid rgb(123, 123, 245);
+}
+
+.allBooks-btns button:last-child:hover {
+  font-size: 1.1rem;
+  border: 8px solid rgb(224, 112, 112);
+}
