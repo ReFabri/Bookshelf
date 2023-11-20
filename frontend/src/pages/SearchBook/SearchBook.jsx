@@ -1,26 +1,26 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import "./SearchBooks.css";
+import "./SearchBook.css";
 
 const SearchBook = () => {
   const navigate = useNavigate();
-  const { search } = useParams();
+  const { query } = useParams();
   const [allBooks, setAllBooks] = useState([]);
 
   const fetchData = useCallback(async () => {
     try {
-      const cleanSearchStr = search.trim().toLowerCase();
       const data = await fetch("http://localhost:5000/bookstore/");
       const jsonData = await data.json();
+      const cleanQueryStr = query.trim().toLowerCase();
       const foundBooks = jsonData.books.filter((book) => {
-        book.title.toLowerCase().includes(cleanSearchStr);
+        return book.title.toLowerCase().includes(cleanQueryStr);
       });
       setAllBooks(foundBooks);
     } catch (error) {
       console.log(error);
     }
-  }, [search]);
+  }, [query]);
 
   useEffect(() => {
     fetchData();
@@ -45,8 +45,8 @@ const SearchBook = () => {
         <h1>All your books</h1>
         {!allBooks.length ? (
           <div>
-            <h2>No Books in your List</h2>
-            <p>📕 Add books to your list at the top navigation bar</p>
+            <h2>No Books Found</h2>
+            <p>📕 Your search returned no results</p>
           </div>
         ) : (
           allBooks.map((book) => (

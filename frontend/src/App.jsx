@@ -15,7 +15,7 @@ function App() {
         <Route path="/addbook" element={<AddBook />} />
         <Route path="/allbooks" element={<AllBooks />} />
         <Route path="/editbook/:id" element={<EditBook />} />
-        <Route path="/searchbook/:search" element={<SearchBook />} />
+        <Route path="/searchbook/:query" element={<SearchBook />} />
       </Routes>
     </>
   );
