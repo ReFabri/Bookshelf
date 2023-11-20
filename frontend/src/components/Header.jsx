@@ -1,7 +1,16 @@
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+
+  const handleQuery = (e) => {
+    e.preventDefault();
+    if (query.length) navigate(`/searchbook/${query}`);
+  };
+
   return (
     <header className="headerMain">
       <div>
@@ -10,8 +19,19 @@ const Header = () => {
         </Link>
       </div>
       <div className="headerSearch">
-        <input type="text" name="" id="" placeholder="Search for a book" />
-        <button className="headerBtn headerBtn-search">🔍</button>
+        <input
+          onChange={(e) => setQuery(e.target.value)}
+          value={query}
+          type="text"
+          placeholder="Search for a book"
+        />
+        <button
+          className="headerBtn headerBtn-search"
+          onClick={handleQuery}
+          value={query.trim()}
+        >
+          🔍
+        </button>
       </div>
       <nav className="navMain">
         <Link to="/addbook">
