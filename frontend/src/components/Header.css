@@ -42,3 +42,21 @@
 .headerBtn:hover {
   opacity: 0.8;
 }
+
+@media (max-width: 1000px) {
+  .headerMain {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+  .headerTitle {
+    font-size: 1.1rem;
+  }
+  .headerSearch {
+    display: none;
+  }
+
+  .headerBtn {
+    margin: 0 0.2rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
